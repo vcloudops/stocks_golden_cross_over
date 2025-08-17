@@ -1,103 +1,93 @@
-Looks like you started pasting your **README.md** but didn’t finish it 😊
+---
 
-Here’s the full clean version (using proper Markdown fences):
+# Nifty 50 Return of Change Tracker
 
-````markdown
-# 📊 NIFTY50 30-Day ROC Analysis & Report Generator
-
-This project analyzes the **NIFTY50 stocks** using **Rate of Change (ROC)** over the last 30 days, identifies the **top gainers** and **top losers**, and generates a professional **multi-page PDF report**, along with **CSV** and **Excel** summaries.
+This project analyzes the **NIFTY50 stocks** using **Rate of Change (ROC)** over the last 30 days, identifies the **top gainers** and **top losers**, and generates reports in  CSV, Excel, and PDF formats
 
 ---
 
 ## 🚀 Features
-- Fetches **1 year of historical stock data** for all NIFTY50 tickers from [Yahoo Finance](https://finance.yahoo.com/).
-- Calculates **30-day ROC (%)** for each stock.
-- Identifies **Top N Gainers** and **Top N Losers** (default: 10).
-- Generates:
-  - **CSV Summary** (`nifty_roc_summary.csv`)
-  - **Excel Summary** (`nifty_roc_summary.xlsx`)
-  - **PDF Report** (`nifty_roc_report_YYYY-MM-DD.pdf`)
-    - Individual ROC charts for each stock
-    - Bar chart of **Top Gainers vs Losers**
-    - Summary table (color-coded: green = gainers, red = losers)
-- Saves a **sample chart image** (`example_chart.png`) for README usage.
+* Fetches **1 year of historical stock data** for all NIFTY50 tickers from **yfinance**
+* Calculates **30-day ROC (%)** for each stock.
+* Identifies **Top N Gainers** and **Top N Losers** (default: 10).
+* Generates output files:
+
+  * **CSV** with all results
+  * **Excel** with recent crosses highlighted
+  * **PDF** report with charts for each stock
 
 ---
 
-## 📦 Requirements
-- Python 3.8+
-- Libraries:
-  ```bash
-  pip install yfinance pandas matplotlib openpyxl
-````
+## Prerequisites
+
+* [Docker](https://www.docker.com/) installed
+* yfinance api connection to fetch stock data
 
 ---
 
-## 🛠️ How to Run
+## Project Structure
 
-1. Clone this repo or copy the script.
-2. Run the script:
-
-   ```bash
-   python nifty50_roc_report.py
-   ```
-3. Outputs will be saved in the `./output` folder:
-
-   * `nifty_roc_summary.csv`
-   * `nifty_roc_summary.xlsx`
-   * `nifty_roc_report_YYYY-MM-DD.pdf`
-   * `example_chart.png`
+```
+.
+├── Dockerfile
+├── README.md
+├── requirements.txt
+├── app.py
+└── output/  # created automatically when running
+```
 
 ---
 
-## 📑 Example Report Pages
+## Usage
 
-1. **Individual ROC Chart**
+### 1️⃣ Clone the repository
 
-   * Shows how each stock’s 30-day ROC has moved over time.
-2. **Top 10 Gainers vs Top 10 Losers**
-
-   * Green bars = Gainers
-   * Red bars = Losers
-   * Annotated with ROC values
-3. **Summary Table**
-
-   * Latest Close Price
-   * 30-Day ROC (%)
-   * Color-coded for clarity
+```bash
+git clone <your-repo-url>
+cd <repo-folder>/Nifty50ReturnofChangeTracker/code
+```
 
 ---
 
-## ⚡ Customization
+### 2️⃣ Build Docker image
 
-* Change the analysis period:
+```bash
+docker build -t nifty-roc .
+```
 
-  ```python
-  ROC_PERIOD = 30  # days
-  ```
-* Adjust number of top gainers/losers:
+---
+
+### 3️⃣ Run the container
+
+```bash
+docker run --rm -v $(pwd)/output:/app/output nifty-roc
+```
+
+* Output files will be saved in `./output`:
+
+  * `nifty_roc_summary.csv`
+  * `nifty_roc_summary.xlsx`
+  * `nifty_roc_report_YYYY-MM-DD.pdf`
+
+> **Windows PowerShell:** use `${PWD}` instead of `$(pwd)`:
+
+```powershell
+docker run --rm -v $(pwd)/output:/app/output nifty-roc
+```
+
+---
+
+## Configuration
+
+* **Tickers**: Modify the `NIFTY_50_TICKERS` list in `app.py`
+* **SMA periods**: Adjust `ROC_PERIOD`
+* **Adjust number of top gainers/losers**:
 
   ```python
   TOP_N = 10
   ```
+## License
+
+MIT License
 
 ---
-
-## 📈 Sample Output
-
-Example: *Top 10 Gainers vs Top 10 Losers - 30-Day ROC*
-
-![Example Chart](./output/example_chart.png)
-
----
-
-## 📜 License
-
-MIT License. Free to use and modify.
-
-```
-
----
-
-Do you want me to **embed the sample chart auto-generation** into your script so `example_chart.png` is always updated whenever you run it?
-```
