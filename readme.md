@@ -1,11 +1,8 @@
-
-Here’s a **complete `README.md`** tailored for your Nifty 50 Golden Cross project with Docker support:
-
 ---
 
 # Nifty 50 Golden Cross Tracker
 
-This project identifies Nifty 50 stocks that are currently **above the golden cross** (50-day SMA crossing above 200-day SMA) and generates a report with CSV, Excel, and PDF charts.
+This project identifies **Nifty 50 stocks that are currently above the golden cross** (50-day SMA crossing above 200-day SMA) and generates reports in CSV, Excel, and PDF formats.
 
 ---
 
@@ -14,18 +11,18 @@ This project identifies Nifty 50 stocks that are currently **above the golden cr
 * Pulls Nifty 50 stock data using **yfinance**
 * Detects the **golden cross** for each stock
 * Handles timezone-aware datetime issues and ensures enough historical data
-* Generates outputs:
+* Generates output files:
 
-  * `CSV` with all results
-  * `Excel` with recent crosses highlighted
-  * `PDF` report with charts for each stock
+  * **CSV** with all results
+  * **Excel** with recent crosses highlighted
+  * **PDF** report with charts for each stock
 
 ---
 
 ## Prerequisites
 
 * [Docker](https://www.docker.com/) installed
-* Internet connection to fetch stock data
+* yfinance api connection to fetch stock data
 
 ---
 
@@ -36,8 +33,8 @@ This project identifies Nifty 50 stocks that are currently **above the golden cr
 ├── Dockerfile
 ├── README.md
 ├── requirements.txt
-├── robust_nifty_golden_cross.py
-└── output/  # will be created automatically
+├── app.py
+└── output/  # created automatically when running
 ```
 
 ---
@@ -48,7 +45,7 @@ This project identifies Nifty 50 stocks that are currently **above the golden cr
 
 ```bash
 git clone <your-repo-url>
-cd <repo-folder>
+cd <repo-folder>/code
 ```
 
 ---
@@ -91,9 +88,9 @@ docker run --rm -v ${PWD}/output:/app/output nifty-golden-cross
 
 ## Notes
 
-* The script requires at least **200 trading days** of data for accurate SMA calculations
+* The script requires at least **200 trading days** of historical data for accurate SMA calculations
 * Handles errors gracefully: missing or invalid tickers will be skipped
-* Adjusts for **splits and dividends** using `auto_adjust=True` in yfinance
+* Uses **adjusted prices** (`auto_adjust=True`) for splits and dividends
 
 ---
 
@@ -102,3 +99,7 @@ docker run --rm -v ${PWD}/output:/app/output nifty-golden-cross
 MIT License
 
 ---
+
+This README now matches the Docker setup, script, and output workflow.
+
+Do you want me to also create a **full zipped folder structure** ready for Docker build and run?

@@ -1,29 +1,18 @@
+# Use official Python 3.11 slim image
 FROM python:3.11-slim
 
+# Set working directory
 WORKDIR /app
 
-# Copy the Python script into container
+# Copy requirements and script
+COPY requirements.txt .
 COPY app.py .
 
-# Install system dependencies for matplotlib
-RUN apt-get update && apt-get install -y \
-    gcc \
-    libfreetype6-dev \
-    libxft-dev \
-    libpng-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install required packages
-RUN pip install --no-cache-dir \
-yfinance \
-pandas \
-matplotlib \
-openpyxl
+# Create output directory
+RUN mkdir -p /app/output
 
-# Set environment variable to avoid matplotlib GUI issues
-ENV MPLBACKEND=Agg
-
-# Create output and charts directories
-RUN mkdir -p /app/output /app/charts
-
+# Set default command
 CMD ["python", "app.py"]
