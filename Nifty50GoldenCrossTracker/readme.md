@@ -99,7 +99,3 @@ docker run --rm -v ${PWD}/output:/app/output nifty-golden-cross
 MIT License
 
 ---
-
-This README now matches the Docker setup, script, and output workflow.
-
-Do you want me to also create a **full zipped folder structure** ready for Docker build and run?
