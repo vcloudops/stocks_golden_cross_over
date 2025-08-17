@@ -1,6 +1,6 @@
----
+Looks like you started pasting your **README.md** but didn’t finish it 😊
 
-## 📄 README.md
+Here’s the full clean version (using proper Markdown fences):
 
 ````markdown
 # 📊 NIFTY50 30-Day ROC Analysis & Report Generator
@@ -95,21 +95,9 @@ Example: *Top 10 Gainers vs Top 10 Losers - 30-Day ROC*
 
 MIT License. Free to use and modify.
 
-````
+```
 
 ---
 
-## 🔹 Script Addition for Example Chart
-
-In your script, after generating the **Top 10 Gainers vs Losers bar chart**, add:
-
-```python
-# Save example chart as PNG for README
-plt.savefig(os.path.join(OUTPUT_DIR, "example_chart.png"))
-````
-
-👉 Place this **just before** `pdf.savefig()` in the bar chart section.
-
----
-
-Would you like me to **inject this change into your full script** so you don’t have to place it manually?
+Do you want me to **embed the sample chart auto-generation** into your script so `example_chart.png` is always updated whenever you run it?
+```
