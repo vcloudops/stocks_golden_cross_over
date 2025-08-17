@@ -45,7 +45,7 @@ This project identifies **Nifty 50 stocks that are currently above the golden cr
 
 ```bash
 git clone <your-repo-url>
-cd <repo-folder>/code
+cd <repo-folder>/Nifty50GoldenCrossTracker/code
 ```
 
 ---
